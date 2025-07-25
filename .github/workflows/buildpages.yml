@@ -1,0 +1,52 @@
+# 给定工作流将构建文档页面，适用于 GitHub Actions
+name: Build mkdocs-material Pages
+
+# 该工作流在推送到 main 分支时触发
+on:
+  push:
+    branches:
+      - main
+
+# 工作流权限，允许工作流写入内容
+permissions:
+  contents: write
+
+# 具体的工作流作业
+jobs:
+  # 第一个工作，名称为 Build mkdocs-material Pages
+  build:
+    name: Build mkdocs-material Pages
+    # runs-on 表示运行在哪里，指 GitHub Actions 服务器的操作系统，使用最新版本的 ubuntu 操作系统
+    runs-on: ubuntu-latest
+    # 工作流的步骤
+    steps:
+      # 第一步, 配置 Git 凭据
+      - name: Checkout repository
+        # uses 表示使用, 使用 GitHub Actions 官方库的 checkout@v4 检出代码库
+        uses: actions/checkout@v4
+      - name: Configure Git Credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+      # 第二步，设置 Python 环境
+      - name: 设置 Python 版本
+        # 使用 GitHub Actions 官方库的 setup-python@v5 来设置 Python 环境
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x' # 使用最新的 Python 3.x 版本
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
+      - uses: actions/cache@v4
+        with:
+          key: mkdocs-material-${{ env.cache_id }}
+          path: ~/.cache 
+          restore-keys: |
+            mkdocs-material-
+      # 第三步，安装依赖项
+      - name: Install dependencies
+        run: |
+          pip install \
+          mkdocs-material \
+          mkdocs-awesome-pages-plugin \
+      - name: 发布
+        run: |
+          mkdocs gh-deploy --force
