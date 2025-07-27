@@ -1,6 +1,8 @@
 # 给定工作流将构建文档页面，适用于 GitHub Actions
 name: Build mkdocs-material Pages
 
+run-name: ${{ github.actor }} 正在发布网页 🚀
+
 # 该工作流在推送到 main 分支时触发
 on:
   push:
