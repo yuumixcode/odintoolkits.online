@@ -1,7 +1,7 @@
-# 给定工作流将构建文档页面，适用于 GitHub Actions
-name: Build mkdocs-material Pages
+run-name: ${{ github.actor }} 构建 MkDocs-Material 页面并推送到 gh-pages 分支 🚀
 
-run-name: ${{ github.actor }} 正在发布网页 🚀
+# 给定工作流将构建文档页面，适用于 GitHub Actions
+name: 构建 MkDocs-Material 页面并推送到 gh-pages 分支
 
 # 该工作流在推送到 main 分支时触发
 on:
@@ -13,32 +13,31 @@ on:
 permissions:
   contents: write
 
-# 具体的工作流作业
 jobs:
-  # 第一个工作，名称为 Build mkdocs-material Pages
+  # 第一个工作，名称为 Build MkDocs-Material 页面并推送到 gh-pages 分支
   build:
-    name: Build mkdocs-material Pages
+    name: 构建 MkDocs-Material 页面并推送到 gh-pages 分支
     # runs-on 表示运行在哪里，指 GitHub Actions 服务器的操作系统，使用最新版本的 ubuntu 操作系统
     runs-on: ubuntu-latest
     # 工作流的步骤
     steps:
-      - name: 检出代码仓库到工作目录
+      - name: 检出并克隆代码库到运行目录
         # uses 表示使用, 使用 GitHub Actions 官方库的 checkout@v4 检出代码库
         uses: actions/checkout@v4
-      - name: 配置 Git 凭据
+      - name: 配置 Git 凭据，用于推送到 gh-pages 分支
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-      - name: 设置 Python 版本
+      - name: 设置 Python 环境
         # 使用 GitHub Actions 官方库的 setup-python@v5 来设置 Python 环境
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v5 
         with:
-          python-version: '3.x' # 使用最新的 Python 3.x 版本
-      - name: 安装网页需要的依赖项
+          python-version: '3.x' 
+      - name: 安装 MkDocs-Material 的依赖项
         run: |
           pip install \
           mkdocs-material \
           mkdocs-awesome-pages-plugin \
-      - name: 构建 mkdocs-material 页面
+      - name: 构建 MkDocs-Material 页面并推送到 gh-pages 分支
         run: |
           mkdocs gh-deploy --force
