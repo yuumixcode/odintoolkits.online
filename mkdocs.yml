@@ -1,4 +1,5 @@
-site_name: My Docs
+site_name: Odin Toolkits
+site_url: https://odintoolkits.readthedocs.io/zh-cn/latest/ 
 
 theme:
   name: material
