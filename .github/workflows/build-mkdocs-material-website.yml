@@ -1,4 +1,4 @@
-run-name: ${{ github.actor }} 构建 MkDocs-Material 页面并推送到 gh-pages 分支 🚀
+run-name: 构建 MkDocs-Material 页面并推送到 gh-pages 分支 🚀
 
 # 给定工作流将构建文档页面，适用于 GitHub Actions
 name: 构建 MkDocs-Material 页面并推送到 gh-pages 分支
@@ -32,12 +32,13 @@ jobs:
         # 使用 GitHub Actions 官方库的 setup-python@v5 来设置 Python 环境
         uses: actions/setup-python@v5 
         with:
-          python-version: '3.x' 
+          python-version: '3.x'
       - name: 安装 MkDocs-Material 的依赖项
         run: |
-          pip install \
-          mkdocs-material \
-          mkdocs-awesome-pages-plugin \
+          pip install mkdocs-material
+      - name: 检查当前环境 pip 安装的所有包
+        run: |
+          pip list
       - name: 构建 MkDocs-Material 页面并推送到 gh-pages 分支
         run: |
           mkdocs gh-deploy --force
