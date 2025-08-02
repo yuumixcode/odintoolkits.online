@@ -37,6 +37,5 @@ theme:
 # ---
 extra_css:
   - stylesheets/extra.css
-  # - https://fontsapi.zeoseven.com/292/main/result.css
     
 
