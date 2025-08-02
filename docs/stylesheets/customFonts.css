@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "Maple Mono Normal";
+  font-display: swap;
+  src: url("../fonts/MapleMonoNormal-Regular.ttf.woff2") format("woff2"),
+}
+
+@font-face {
+  font-family: "LXGWWenKai-Regular";
+  font-display: swap;
+  src: url("../fonts/LXGWWenKaiMono-Regular.ttf") format('truetype');
+  /* 汉字范围 */
+  unicode-range: U+4E00-9FFF;
+}
+
+@font-face {
+  font-family: "JetBrains Mono - English";
+  src: url("../fonts/JetBrainsMono-Regular.woff2") format("woff2");
+  /* 英文、数字和常用符号范围 */
+  unicode-range: U+0061-007A, U+0041-005A, U+0030-0039, U+002E, U+002C, U+0021, U+003F, U+003A, U+003B, U+002D;
+}
+
+@font-face {
+  font-family: "Maple Mono Normal - English";
+  font-display: swap;
+  src: url("../fonts/MapleMonoNormal-Light.ttf.woff2") format("woff2");
+  /* 英文、数字和常用符号范围 */
+  unicode-range: U+0061-007A, U+0041-005A, U+0030-0039, U+002E, U+002C, U+0021, U+003F, U+003A, U+003B, U+002D;
+}
+
+:root {
+  --md-text-font: "JetBrains Mono - English", "LXGWWenKai-Regular";
+  --md-code-font: "Maple Mono Normal";
+}

@@ -1,4 +1,4 @@
-site_name: Odin Toolkits Documentation
+site_name: Odin Toolkits
 site_description: Odin Toolkits 是一个基于 Odin Inspector 的 Unity 编辑器工具包，旨在简化和增强 Unity 开发工作流程。
 site_author: Yuumix
 site_url: https://yuumi-zeus.github.io/odintoolkits.online/
@@ -36,6 +36,6 @@ theme:
     - content.tooltips
 # ---
 extra_css:
-  - stylesheets/extra.css
+  - stylesheets/customFonts.css
     
 
