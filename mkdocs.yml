@@ -1,5 +1,42 @@
-site_name: Odin Toolkits
+site_name: Odin Toolkits Documentation
+site_description: Odin Toolkits 是一个基于 Odin Inspector 的 Unity 编辑器工具包，旨在简化和增强 Unity 开发工作流程。
+site_author: Yuumix
 site_url: https://yuumi-zeus.github.io/odintoolkits.online/
-
+# ---
 theme:
-  name: material
+  name: material 
+  language: zh
+  font:
+    text: JetBrains Mono
+    code: JetBrains Mono
+  palette:
+    # 根据系统偏好
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: 切换到浅色模式
+    # default 表示浅色模式
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: orange
+      toggle:
+        icon: material/weather-night
+        name: 切换到深色模式
+    # slate 表示深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: green
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: 自动遵循系统偏好
+
+  features:
+    - content.tooltips
+# ---
+extra_css:
+  - stylesheets/extra.css
+  # - https://fontsapi.zeoseven.com/292/main/result.css
+    
+

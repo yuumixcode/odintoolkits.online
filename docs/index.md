@@ -33,7 +33,7 @@ comments: true
 
 ## 项目结构
 
-``` title="项目树形结构图"
+``` markdown
 Plugins/
 │  ├─ Yuumix/
 │  │  ├─ OdinToolkits/
