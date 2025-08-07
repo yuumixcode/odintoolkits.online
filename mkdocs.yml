@@ -1,41 +1,116 @@
-site_name: Odin Toolkits
+# --- 基础信息
+site_name: Odin Toolkits Documentation
+# 链接，设置为你希望的主页地址，如果开启了 navigation.instant 功能后，必须设置 site_url
+site_url: https://yuumixcode.github.io/odintoolkits.online/
 site_description: Odin Toolkits 是一个基于 Odin Inspector 的 Unity 编辑器工具包，旨在简化和增强 Unity 开发工作流程。
 site_author: Yuumix
-site_url: https://yuumi-zeus.github.io/odintoolkits.online/
-# ---
+copyright: Copyright &copy; 2025 Yuumix
+# 顶部导航栏右侧的仓库链接
+repo_name: OdinToolkits For Unity
+repo_url: https://github.com/yuumixcode/OdinToolkits-For-Unity
+
+# --- 尽量按文档目录结构来组织
 theme:
-  name: material 
-  language: zh
-  font:
-    text: JetBrains Mono
-    code: JetBrains Mono
+  name: material # 使用 Material 主题
+
+  # Setup -> colors - 配色方案
   palette:
-    # 根据系统偏好
-    - media: "(prefers-color-scheme)"
+    - media: "(prefers-color-scheme)" # 根据系统偏好自动切换
       toggle:
         icon: material/brightness-auto
         name: 切换到浅色模式
-    # default 表示浅色模式
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
+    - media: "(prefers-color-scheme: light)" # 浅色模式
+      scheme: default # default 表示浅色模式
       primary: indigo
       accent: orange
       toggle:
         icon: material/weather-night
         name: 切换到深色模式
-    # slate 表示深色模式
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: green
+    - media: "(prefers-color-scheme: dark)" # 深色模式
+      scheme: slate # slate 表示深色模式，基于浅色模式修改
+      primary: black
       accent: indigo
       toggle:
         icon: material/weather-sunny
         name: 自动遵循系统偏好
 
-  features:
-    - content.tooltips
-# ---
-extra_css:
-  - stylesheets/customFonts.css
-    
+  # Setup -> fonts - 字体
+  font:
+    text: Roboto
+    code: Roboto Mono
 
+  # Setup -> language - 语言
+  language: zh
+  # Setup -> logo - 网站图标
+  logo: assets/InvertedTriangle.png
+  favicon: assets/InvertedTriangle2Bit.png
+
+  custom_dir: overrides
+
+  features:
+    - content.tooltips # 启用工具提示，如果要 Setup - colors - 配色方案 中的 accent 生效，必须启用此项
+    # Setup - navigation - 导航
+    - navigation.instant # 即时加载，对于大型文档站点效果更好，必须设置 site_url
+    - navigation.instant.progress # 即时加载进度条，仅当页面在 400 毫秒后仍未完成加载时显示
+    - navigation.tracking # 锚点追踪，地址栏中的 URL 会自动更新为活动锚点，便于分享
+    - navigation.tabs # 顶部标签导航
+    # - navigation.tabs.sticky # 与 navigation.tabs 一起使用，启用表示顶部标签导航栏在滚动时保持可见，一般关闭
+    - navigation.sections # 侧边栏变为章节，文档较少时效果更好
+    # - navigation.expand # 启用表示侧边栏分组默认展开
+    - navigation.prune # 导航修剪，对于大型文档站点效果更好，不能与 navigation.expand 一起使用
+    - navigation.indexes # 章节索引，让用于分类的目录可以指向一份文档，对于概述非常有用，不能和 toc.integrate 一起使用
+    - navigation.top # 立刻返回顶部的按钮
+    # ---
+    - toc.follow # 锚点跟随，通常是指右侧的目录，启用后会在滚动时自动跟随当前锚点
+    # - toc.integrate # 集成目录，启用后会将章节目录集成左侧，不能和 navigation.indexes 一起使用
+    # Setup - search - 搜索
+    - search.suggest # 搜索建议
+    # - search.highlight # 搜索高亮
+    - search.share # 搜索分享
+
+    # announcement
+    - announce.dismiss
+  icon:
+    tag:
+      html: fontawesome/brands/html5
+      js: fontawesome/brands/js
+      css: fontawesome/brands/css3
+plugins:
+  # Setup -> search
+  - search # 启用搜索功能
+  # Setup -> blog
+  - blog # 启用博客功能
+  # Setup -> blog -> rss
+  - rss:
+      match_path: blog/posts/.*
+      date_from_meta:
+        as_creation: date
+      categories:
+        - categories
+        - tags
+  # Setup -> tags
+  - tags
+
+extra_css:
+  - extra/stylesheets/customFonts.css
+
+extra:
+  tags:
+    Odin Inspector: html
+    JavaScript: js
+    CSS: css
+
+nav:
+  - Home: index.md
+  - README: contents/README.md
+  - CHANGELOG: contents/CHANGELOG.md
+  - 使用手册:
+      - contents/manuals/index.md
+      - 手册一: contents/manuals/TestOne.md
+      - 手册二: contents/manuals/TestTwo.md
+  - API 文档:
+      - 脚本 API 概述: contents/scriptingAPI/index.md
+  - 标签:
+      - blog/tags.md
+  - 开发者博客:
+      - blog/index.md
