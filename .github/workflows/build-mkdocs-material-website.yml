@@ -36,6 +36,7 @@ jobs:
       - name: 安装 MkDocs-Material 的依赖项
         run: |
           pip install mkdocs-material
+          pip install mkdocs-rss-plugin
       - name: 检查当前环境 pip 安装的所有包
         run: |
           pip list
