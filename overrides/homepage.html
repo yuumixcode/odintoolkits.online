@@ -1,0 +1,94 @@
+{% extends "main.html" %} {% block content %} {{ super() }}
+
+<style>
+  /* 1. 变量仅在 #odin-toolkits 范围内生效（局部变量） */
+  #odin-toolkits {
+    /* 标题专用变量 */
+    --title-local-primary: #4299e1;
+    --title-local-dark: #3182ce;
+    --title-local-light: #6366f1;
+    --title-local-shadow-base: rgba(66, 153, 225, 0.2);
+    --title-local-shadow-hover: rgba(66, 153, 225, 0.3);
+    --title-local-transition-speed: 0.4s;
+    --title-local-transition-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    /* 文本样式 */
+    font-family: "JetBrains Mono Only English", "Segoe UI", system-ui,
+      sans-serif;
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    word-spacing: 0.2em;
+    line-height: 1.3;
+
+    /* 渐变文本（使用局部变量） */
+    background: linear-gradient(
+        135deg,
+        var(--title-local-primary),
+        var(--title-local-light)
+      )
+      text;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    /* 边框与阴影（使用局部变量） */
+    border: 2px solid var(--title-local-primary);
+    border-radius: 12px;
+    box-shadow: 0 6px 15px var(--title-local-shadow-base);
+
+    /* 布局与交互 */
+    width: fit-content;
+    padding: 1.5rem 3rem;
+    margin: 2rem auto 3rem;
+    cursor: pointer;
+    user-select: none;
+
+    /* 过渡动画（使用局部变量） */
+    transition: transform var(--title-local-transition-speed)
+        var(--title-local-transition-function),
+      box-shadow var(--title-local-transition-speed)
+        var(--title-local-transition-function),
+      border-color var(--title-local-transition-speed)
+        var(--title-local-transition-function),
+      letter-spacing var(--title-local-transition-speed)
+        var(--title-local-transition-function);
+
+    /* 加载动画 */
+    animation: fadeIn 1s ease-out 0.2s forwards;
+    opacity: 0;
+  }
+
+  /* 悬停状态（使用局部变量） */
+  #odin-toolkits:hover {
+    transform: scale(1.05) translateY(-5px);
+    border-color: var(--title-local-dark);
+    box-shadow: 0 10px 20px var(--title-local-shadow-hover);
+    letter-spacing: 0.15em;
+  }
+
+  /* 点击状态 */
+  #odin-toolkits:active {
+    transform: scale(0.98) translateY(-2px);
+    box-shadow: 0 4px 10px var(--title-local-shadow-base);
+    transition-duration: 0.15s;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    #odin-toolkits {
+      padding: 1rem 2rem;
+      font-size: clamp(2rem, 6vw, 3rem);
+    }
+  }
+</style>
+
+{% endblock %}
