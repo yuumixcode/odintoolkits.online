@@ -2,7 +2,7 @@
 site_name: Odin Toolkits Documentation
 # 链接，设置为你希望的主页地址，如果开启了 navigation.instant 功能后，必须设置 site_url
 site_url: https://yuumixcode.github.io/odintoolkits.online/
-site_description: Odin Toolkits 是一个基于 Odin Inspector 的 Unity 编辑器工具包，旨在简化和增强 Unity 开发工作流程。
+site_description: Odin Toolkits 是 Odin Inspector and Serializer 插件的第三方扩展工具集。挖掘插件用法、提供更多优雅的解决方案，优化开发流程。
 site_author: Yuumix
 copyright: Copyright &copy; 2025 Yuumix
 # 顶部导航栏右侧的仓库链接
@@ -42,10 +42,11 @@ theme:
   # Setup -> language - 语言
   language: zh
   # Setup -> logo - 网站图标
-  logo: assets/InvertedTriangle.png
-  favicon: assets/InvertedTriangle2Bit.png
+  logo: assets/logo-odintoolkits-color-noshadow.png
+  favicon: assets/logo-odintoolkits-color-noshadow.png
 
-  custom_dir: overrides
+  # Overrides
+  custom_dir: docs/overrides
 
   features:
     - content.tooltips # 启用工具提示，如果要 Setup - colors - 配色方案 中的 accent 生效，必须启用此项
@@ -67,14 +68,9 @@ theme:
     - search.suggest # 搜索建议
     # - search.highlight # 搜索高亮
     - search.share # 搜索分享
-
     # announcement
     - announce.dismiss
-  icon:
-    tag:
-      html: fontawesome/brands/html5
-      js: fontawesome/brands/js
-      css: fontawesome/brands/css3
+    
 plugins:
   # Setup -> search
   - search # 启用搜索功能
@@ -92,17 +88,56 @@ plugins:
   - tags
 
 extra_css:
-  - extra/stylesheets/customFonts.css
+  - extra/stylesheets/customFonts.css # 自定义字体
+  - https://static.zeoseven.com/zsft/292/main/result.css # 自定义字体-霞鹜文楷
 
-extra:
-  tags:
-    Odin Inspector: html
-    JavaScript: js
-    CSS: css
+markdown_extensions:
+  # Admonitions 告诫 ---
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  # Annotations 附注 ---
+  - attr_list # 按钮需要此模块 ｜ Grids 网格需要此模块 ｜ 表情需要此模块 ｜ 图片需要此模块 ｜ Tooltips 需要此模块
+  - md_in_html # Grids 网格需要此模块 ｜ 图片需要此模块
+  # 代码高亮 ---
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets # Tooltips 需要此模块
+  # 内容栏 ---
+  - pymdownx.tabbed:
+      alternate_style: true
+  # 数据表 ---
+  - tables
+  # Mermaid 图
+  - pymdownx.superfences: # Annotations 附注需要此模块 ｜ 代码高亮需要此模块 ｜ 内容栏需要此模块
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - footnotes # 脚注
+  # 特殊标记 ---
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  # 表情 ---
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - def_list # 定义列表
+  - pymdownx.tasklist: # 定义列表
+      custom_checkbox: true
+  # 图片标题 ---
+  - pymdownx.blocks.caption
+  # tooltips 提示 ---
+  - abbr
 
 nav:
   - Home: index.md
-  - README: contents/README.md
   - CHANGELOG: contents/CHANGELOG.md
   - 使用手册:
       - contents/manuals/index.md
